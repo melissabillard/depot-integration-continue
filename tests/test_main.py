@@ -1,17 +1,24 @@
 import pytest
+from unittest.mock import patch
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from app.main import app, get_db
-from app.database import Base
-from app import models
+from app.database import SessionLocal
+from app import models, database
 
 SQLALCHEMY_DATABASE_URL = "postgresql://taskuser:taskpassword@localhost/taskdb"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base.metadata.create_all(bind=engine)
+database.Base.metadata.create_all(bind=engine)
+
+def test_get_db():
+    db_gen = get_db()
+    db = next(db_gen)
+    assert isinstance(db, SessionLocal().__class__)
+    db_gen.close()
 
 # Override the get_db dependency to use the testing database
 def override_get_db():
