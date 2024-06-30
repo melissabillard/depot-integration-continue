@@ -1,18 +1,17 @@
-FROM python:3.8-slim
+# Use the official tiangolo/uvicorn-gunicorn-fastapi image as the base image
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
+# Copy the requirements file into the container
+COPY ./requirements.txt /app/requirements.txt
+
+# Install the Python dependencies
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# Copy the rest of the application code into the container
 COPY . /app
 
-# Install packages from requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Define port
-EXPOSE 8000
-
-# We can define environment variables here if needed
-
-# Run app
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--log-level", "info"]
+# Command to run the application with Uvicorn
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
