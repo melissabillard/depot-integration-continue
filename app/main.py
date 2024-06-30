@@ -6,6 +6,7 @@ from typing import List
 from . import models, schemas, controllers
 from .database import SessionLocal, engine
 
+
 models.Base.metadata.create_all(bind=engine)
 
 
@@ -23,7 +24,7 @@ def get_db():
         yield db
     finally:
         db.close()
-
+        
 
 @app.get("/", response_model=dict, tags=["Health Check"])
 def api_status():
@@ -64,5 +65,5 @@ def delete_task(task_id: int, db: Session = Depends(get_db)):
     return db_task
 
 
-if __name__ == "__main__":
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+# if __name__ == "__main__":
+#     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
