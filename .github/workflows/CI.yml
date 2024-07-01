@@ -42,7 +42,7 @@ jobs:
           POSTGRES_PASSWORD: taskpassword
           POSTGRES_DB: taskdb
         ports:
-          - "5434:5433"
+          - "3250:3250"
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
@@ -53,7 +53,7 @@ jobs:
       run: |
         docker-compose -f docker-compose.yml up -d
         docker-compose ps
-        sleep 15  # Attendre quelques secondes pour s'assurer que les services sont démarrés
+        sleep 50  # Attendre quelques secondes pour s'assurer que les services sont démarrés
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -67,7 +67,7 @@ jobs:
 
     - name: Run unit tests with coverage
       env:
-        DATABASE_URL: postgresql://taskuser:taskpassword@tasks-db:5433/taskdb
+        DATABASE_URL: postgresql://taskuser:taskpassword@tasks-db:3250/taskdb
       run: |
         pytest tests --cov=app
 
