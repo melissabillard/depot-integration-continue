@@ -65,7 +65,7 @@ jobs:
 
     - name: Run unit tests with coverage
       env:
-        DATABASE_URL: postgresql://taskuser:taskpassword@tasks-db:3250/taskdb
+        DATABASE_URL: postgresql://taskuser:taskpassword@tasks-db/taskdb
       run: |
         pytest tests --cov=app
 
