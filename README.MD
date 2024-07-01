@@ -25,7 +25,9 @@ Mise en oeuvre d'une chaine d'intégration continue.
 ![](./assets/docs/docker.png)
 
 
-### Exécution de lint
+## Exécution de lint
+- [Pylint](https://pylint.readthedocs.io/en/latest/index.html)
+
 ```cmd
 pylint app/*.py
 ```
