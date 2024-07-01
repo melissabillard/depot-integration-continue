@@ -1,6 +1,7 @@
-from typing import List
 from fastapi import FastAPI, HTTPException, Depends
+import uvicorn
 from sqlalchemy.orm import Session
+from typing import List
 
 from . import models, schemas, controllers
 from .database import SessionLocal, engine, get_db
@@ -15,6 +16,14 @@ app = FastAPI(
     summary="Deadpool's favorite app. Nuff said.",
     version="0.0.1",
 )
+
+# Dependency
+# def get_db():
+#     db = SessionLocal()
+#     try:
+#         yield db
+#     finally:
+#         db.close()
         
 
 @app.get("/", response_model=dict, tags=["Health Check"])
