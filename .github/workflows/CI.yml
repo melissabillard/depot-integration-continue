@@ -87,11 +87,13 @@ jobs:
 
     - name: Run SonarQube Scanner
       env:
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+        SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
       run: |
         sonar-scanner \
-          -Dsonar.projectKey=TP_integ_continue \
+          -Dsonar.projectKey=$SONAR_PROJECT_KEY \
+          -Dsonar.organization=$SONAR_ORGANIZATION \
           -Dsonar.sources=. \
-          -Dsonar.host.url=$SONAR_HOST_URL \
+          -Dsonar.host.url=https://efae-81-64-135-19.ngrok-free.app \
           -Dsonar.login=$SONAR_TOKEN
