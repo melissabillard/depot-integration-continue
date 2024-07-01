@@ -1,5 +1,5 @@
-## TP Intégration Continue
-Description d'API ici
+## TP - Intégration Continue (ICDE849)
+Mise en oeuvre d'une chaine d'intégration continue.
 
 ## Participants 👥
 - BILLARD Mélissa
@@ -68,7 +68,7 @@ CREATE DATABASE taskdb;
 GRANT ALL PRIVILEGES ON DATABASE taskdb TO taskuser;
 ```
 
-### Efacer fichiers DS_Store
+### Effacer fichiers DS_Store
 ```java
 find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
 ```
