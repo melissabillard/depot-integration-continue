@@ -62,6 +62,6 @@ jobs:
 
     - name: Run unit tests with coverage
       env:
-        DATABASE_URL: postgresql://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@tasks-db/${{ secrets.POSTGRES_DB }}
+        DATABASE_URL: postgresql://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@${{secrets.CONTAINER_NAME}}/${{ secrets.POSTGRES_DB }}
       run: |
         pytest tests --cov=app
