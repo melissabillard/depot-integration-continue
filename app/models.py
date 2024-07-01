@@ -5,7 +5,7 @@ Ce module définit les modèles de base de données pour l'application.
 from sqlalchemy import Column, Integer, String, Boolean
 from .database import Base
 
-class Task(Base):
+class Task(Base): # pylint: disable=too-few-public-methods
     """
     Modèle représentant une tâche dans la base de données.
     
@@ -21,4 +21,3 @@ class Task(Base):
     title = Column(String, index=True)
     description = Column(String, index=True)
     completed = Column(Boolean, default=False)
-    

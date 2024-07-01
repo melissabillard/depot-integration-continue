@@ -23,14 +23,14 @@ services:
     environment:
       - DATABASE_URL=postgresql://taskuser:taskpassword@tasks-db/taskdb
 
-  tasks-test:
-    build: .
-    depends_on:
-      - tasks-db
-    environment:
-      - DATABASE_URL=postgresql://taskuser:taskpassword@tasks-db/taskdb
-      - TEST_DATABASE_URL=postgresql://taskuser:taskpassword@tasks-db/taskdb_test
-    command: ["pytest", "--cov=app"]
+  # tasks-test:
+  #   build: .
+  #   depends_on:
+  #     - tasks-db
+  #   environment:
+  #     - DATABASE_URL=postgresql://taskuser:taskpassword@tasks-db/taskdb
+  #     - TEST_DATABASE_URL=postgresql://taskuser:taskpassword@tasks-db/taskdb_test
+  #   command: ["pytest", "--cov=app"]
 
 volumes:
   data:

@@ -25,6 +25,14 @@ Mise en oeuvre d'une chaine d'intégration continue.
 ![](./assets/docs/docker.png)
 
 
+### Exécution de lint
+```cmd
+pylint app/*.py
+```
+
+![](./assets/docs/lint.png)
+
+
 ## Présentation des Tests et Instructions d'Exécution
 
 - [Pytest](https://docs.pytest.org/en/8.2.x/)
