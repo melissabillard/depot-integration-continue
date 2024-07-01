@@ -85,7 +85,7 @@ jobs:
         uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: sqp_b9491dc104276afd058864164db798b268e1e69d
-          SONAR_HOST_URL: https://efae-81-64-135-19.ngrok-free.app
+          SONAR_HOST_URL: https://31f7-81-64-135-19.ngrok-free.app
           
       - name: SonarQube Quality Gate
         uses: sonarsource/sonarqube-quality-gate-action@master
