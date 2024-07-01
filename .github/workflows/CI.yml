@@ -36,11 +36,6 @@ jobs:
         docker-compose ps
         sleep 60  # Increased wait time to ensure services are started
 
-    - name: Wait for PostgreSQL to be ready
-      run: |
-        # Wait until PostgreSQL is ready
-        docker-compose exec tasks-db bash -c 'until pg_isready ; do sleep 1 ; done'
-
     - name: Run unit tests with coverage
       env:
         DATABASE_URL: postgresql://taskuser:taskpassword@tasks-db/taskdb
