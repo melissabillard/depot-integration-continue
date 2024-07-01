@@ -26,7 +26,7 @@ jobs:
 
       - name: Run Docker container
         run: |
-          docker run -d --name fastapi_container -p 8000:8000 ritacarrilho/tp_integration_continue:latest
+          docker run -d --name tp_integration_continue -p 8000:8000 ritacarrilho/tp_integration_continue:latest
           sleep 15  # Attendre que le conteneur démarre
           
       - name: Check if FastAPI started successfully
@@ -36,5 +36,5 @@ jobs:
       - name: Stop Docker container
         if: always()
         run: |
-          docker stop fastapi_container
-          docker rm fastapi_container
+          docker stop tp_integration_continue
+          docker rm tp_integration_continue
