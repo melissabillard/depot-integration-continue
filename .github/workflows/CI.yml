@@ -42,7 +42,7 @@ jobs:
           POSTGRES_PASSWORD: taskpassword
           POSTGRES_DB: taskdb
         ports:
-          - "5433:5433"
+          - "5432:5432"
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
@@ -67,13 +67,9 @@ jobs:
 
     - name: Run unit tests with coverage
       env:
-        DATABASE_URL: postgresql://taskuser:taskpassword@localhost:5433/taskdb
+        DATABASE_URL: postgresql://taskuser:taskpassword@localhost:5432/taskdb
       run: |
         pytest tests --cov=app
 
     - name: Stop Docker Compose services
       run: docker-compose -f docker-compose.yml down
-
-    - name: Run unit tests with coverage
-      run: |
-        pytest tests --cov=app
