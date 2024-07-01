@@ -1,4 +1,4 @@
-name: Test FastAPI Startup
+name: CI
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  test-fastapi:
+  test-fastapi-start:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'  # Ajustez la version de Python selon votre projet
+          python-version: '3.10' 
 
       - name: Install dependencies
         run: |
