@@ -34,7 +34,12 @@ jobs:
       run: |
         docker-compose -f docker-compose.yml up -d
         docker-compose ps
-        sleep 50  # Wait a few seconds to ensure services are started
+        sleep 60  # Increased wait time to ensure services are started
+
+    - name: Wait for PostgreSQL to be ready
+      run: |
+        # Wait until PostgreSQL is ready
+        docker-compose exec tasks-db bash -c 'until pg_isready ; do sleep 1 ; done'
 
     - name: Run unit tests with coverage
       env:
