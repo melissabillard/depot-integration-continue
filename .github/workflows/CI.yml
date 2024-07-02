@@ -81,6 +81,7 @@ jobs:
   sonarqube:
     name: SonarQube Analysis
     runs-on: ubuntu-latest
+    needs: [lint, unit-tests]
 
     steps:
     - name: Checkout code
@@ -88,12 +89,16 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Download SonarQube Scanner
+      run: |
+        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+        unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+
     - name: SonarQube Scan
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
-          pip install sonar-scanner
-          sonar-scanner \
+          ./sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner \
             -Dsonar.projectKey=${{ secrets.SONAR_KEY }} \
             -Dsonar.organization=melissabillard_depot-integration-continue \
             -Dsonar.sources=app \
