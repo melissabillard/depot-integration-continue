@@ -120,7 +120,7 @@ jobs:
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       with:
         args: |
-          -Dsonar.projectKey=ritacarrilho_tp_integration_continue
+          -Dsonar.projectKey=${{ secrets.SONAR_KEY }}
           -Dsonar.sources=app
           -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
