@@ -103,7 +103,7 @@ jobs:
       with:
         args: >
           -Dsonar.projectKey=${{ secrets.SONAR_KEY }}
-          -Dsonar.organization=melissabillard_depot-integration-continue
+          -Dsonar.organization=melissabillard
           -Dsonar.sources=app
           -Dsonar.tests=tests
           -Dsonar.python.coverage.reportPaths=coverage.xml
