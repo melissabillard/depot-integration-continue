@@ -98,18 +98,27 @@ jobs:
         name: coverage-report
         path: ./
 
-    - name: SonarQube Scan
+    - name: Print coverage report
+      run: cat coverage.xml
+    # - name: Run tox
+    #   run: tox -e py
+
+    - name: Adjust coverage paths
+      run: |
+        sed -i 's|/__w/tp_integration_continue/tp_integration_continue/app|app|g' coverage.xml
+
+    - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
+      env: 
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
         args: >
           -Dsonar.projectKey=${{ secrets.SONAR_KEY }}
           -Dsonar.organization=melissabillard
-          -Dsonar.sources=./app
-          -Dsonar.tests=./tests
+          -Dsonar.sources=app
+          -Dsonar.tests=tests
           -Dsonar.python.coverage.reportPaths=coverage.xml
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          -Dsonar.scm.provider=git
 
     - name: SonarQube Quality Gate check
       id: sonarqube-quality-gate-check
