@@ -117,12 +117,12 @@ jobs:
       uses: SonarSource/sonarcloud-github-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       with:
         args: |
           -Dsonar.projectKey=ritacarrilho_tp_integration_continue
           -Dsonar.sources=app
-          -Dsonar.host.url=${{ secrets.SONAR_HOST }}
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
           -Dsonar.python.coverage.reportPaths=coverage.xml
           -Dsonar.python.pylint.reportPaths=pylint-report.txt
